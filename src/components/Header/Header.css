@@ -1,0 +1,9 @@
+.headTile{
+    color: slateblue;
+    background-color: lightblue;
+    padding: 8px 30px;
+    margin: 16px auto;
+    border: 2px solid navy;
+    border-radius: 10px;
+    display: table;
+}
