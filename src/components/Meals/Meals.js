@@ -21,7 +21,7 @@ const Meals = () => {
         const newAdded = [...selected,meal]
         // console.log(newAdded)
         setSelected(newAdded)
-        addToDb(JSON.stringify(meal));
+        addToDb(meal.category);
     }
     const handleRemove = (meal) =>{
         
@@ -31,9 +31,7 @@ const Meals = () => {
     return (
         <div className="display">
             <div className="mealsContainer">
-            {
-                console.log(selected)
-            }
+            
             {
                 
                 meals.map(meal => <Category

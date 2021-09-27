@@ -31,14 +31,13 @@ const removeFromDb = category => {
 }
 
 const getFromDb = () => {
-    const savedDb = localStorage.getItem("cart");
-    let savedDbObj = JSON.parse(savedDb);
+    let savedDb = localStorage.getItem("cart");
     if(savedDb){
-        return savedDbObj;
+        savedDb = JSON.parse(savedDb);
     }
     else{
-        savedDbObj = {}
+        savedDb = {}
     }
-    return savedDbObj;
+    return savedDb;
 }
 export {addToDb, removeFromDb, getFromDb}
