@@ -18,11 +18,11 @@ const Meals = () => {
     const [selected, setSelected] = useState([]);
     const handleAdd = (meal) =>{
         // object is not extensible:(error)
-        meal["quantity"] = 1;
+        // meal.quantity = 1;
         const newAdded = [...selected,meal];
         // ekhan theke set hosse na.reload dile tarpor set hoe.(problem)
         setSelected(newAdded)
-        addToDb(meal.category);
+        addToDb(meal.strCategory);
     }
     const handleRemove = (meal) =>{
         removeFromDb(JSON.stringify(meal))
@@ -39,11 +39,10 @@ const Meals = () => {
             const savedDb = getFromDb();
             const savedCart = [];
             for(const category in savedDb){
-                const foundCategory = meals.find(item => item.strCategory === category)
-                // console.log(category, foundCategory)
+                const foundCategory = meals.find(item => item.strCategory === category);
                 const quantity = savedDb[category];
+                // error:(foundCategory undefined)
                 foundCategory.quantity = quantity;
-                console.log(foundCategory)
                 savedCart.push(foundCategory);
             }
             setSelected(savedCart);
@@ -51,7 +50,7 @@ const Meals = () => {
     },[meals])
 
 
-    const reducedItem = selected.reduce((previous, current) => previous + current.quantity, 0)
+    const reducedItem = selected.reduce((previous, current) => (previous + current.quantity), 0)
 
     return (
         <div className="display">
