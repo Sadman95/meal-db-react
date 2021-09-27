@@ -1,20 +1,17 @@
 const addToDb = (category) =>{
     console.log(category)
-    const itemsObj = {};
-    const isExist = localStorage.getItem('cart');
-    if(!isExist){
-        itemsObj[category] = 1;
-        localStorage.setItem('cart', JSON.stringify(itemsObj));
-    }
-    else{
-        const itemsObj = JSON.parse(localStorage.getItem('cart'));
+    
+    const itemsObj = getFromDb();
+    if(category in itemsObj){
+        
         console.log(itemsObj)
         // console.log(typeof(itemsObj))
-        if(!itemsObj[category]){
-            itemsObj[category] = 0;
-        }
-        const newAdd = itemsObj[category] + 1;
-        itemsObj[category] = newAdd;
+        itemsObj[category] = itemsObj[category] + 1;
+        localStorage.setItem('cart', JSON.stringify(itemsObj));
+        
+    }
+    else{
+        itemsObj[category] = 1;
         localStorage.setItem('cart', JSON.stringify(itemsObj));
     }
 
@@ -23,15 +20,25 @@ const addToDb = (category) =>{
 
 const removeFromDb = category => {
     console.log(category)
-    const isExist = localStorage.getItem('cart');
-    if(!isExist){
+    const itemsObj = getFromDb();
+    if(category in itemsObj === false){
         alert('not available')
     }
     else{
-        const itemsObj = JSON.parse(isExist);
-        const removeCount = (itemsObj[category]>0 ? itemsObj[category] - 1 : 0);
-        itemsObj[category] = removeCount;
+        delete itemsObj[category]
         localStorage.setItem('cart', JSON.stringify(itemsObj));
     }
 }
-export {addToDb, removeFromDb}
+
+const getFromDb = () => {
+    const savedDb = localStorage.getItem("cart");
+    let savedDbObj = JSON.parse(savedDb);
+    if(savedDb){
+        return savedDbObj;
+    }
+    else{
+        savedDbObj = {}
+    }
+    return savedDbObj;
+}
+export {addToDb, removeFromDb, getFromDb}

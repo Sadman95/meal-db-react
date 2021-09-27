@@ -1,9 +1,14 @@
 import React from 'react';
 import "./Cart.css";
-const Cart = () => {
+const Cart = (props) => {
+    const {item} = props;
     return (
         <div className="cartStyle">
-            <table style={{textAlign: "left",width: "200px"}}>
+
+            <ul><li>{item.category}</li></ul>
+
+
+            {/* <table style={{textAlign: "left",width: "200px"}}>
                 <thead>
                     <tr>
                         <th className="text-dark">Cart</th>
@@ -27,7 +32,7 @@ const Cart = () => {
                         <td>0</td>
                     </tr>
                 </tbody>
-            </table>
+            </table> */}
         </div>
     );
     
