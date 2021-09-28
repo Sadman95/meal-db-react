@@ -1,5 +1,5 @@
 const addToDb = (category) =>{
-    
+    console.log(category)
     const itemsObj = getFromDb();
     if(category in itemsObj){
         

@@ -5,7 +5,7 @@ import "./Category.css";
 const Category = (props) => {
     // console.log(props.handleAdd)
     const {img, category, id} = props;
-  
+    
     return (
         <div className="mealStyle">
             <p>{id}</p>
